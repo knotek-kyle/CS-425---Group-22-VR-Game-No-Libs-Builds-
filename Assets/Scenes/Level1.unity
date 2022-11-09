@@ -9689,7 +9689,7 @@ PrefabInstance:
     - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
         type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
         type: 3}
@@ -9715,6 +9715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
+        type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
         type: 3}
@@ -9746,6 +9751,11 @@ PrefabInstance:
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 462879213}
+    - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
+        type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 4112930353279020551}
     - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
         type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -9780,6 +9790,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
+        type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: DoDash
       objectReference: {fileID: 0}
     - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
         type: 3}
@@ -9818,6 +9833,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
         type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: Dash, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
+        type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
@@ -9825,6 +9845,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: UnityEngine.Collider, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112930352329255089, guid: 030cd2a8d65cb2742b56866316eaef25,
+        type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4112930352451861164, guid: 030cd2a8d65cb2742b56866316eaef25,
         type: 3}
@@ -9992,8 +10017,9 @@ MonoBehaviour:
   orientation: {fileID: 1460481853}
   walkSpeed: 1.6
   sprintSpeed: 5
+  dashSpeed: 70
   groundDrag: 10
-  jumpForce: 7
+  jumpForce: 8
   jumpCooldown: 0.25
   airMultiplier: 0
   jumpSound: {fileID: 235209314}
@@ -10027,6 +10053,7 @@ MonoBehaviour:
   isGround:
     serializedVersion: 2
     m_Bits: 1024
+  dashing: 0
   rb: {fileID: 4112930353279020545}
   state: 0
 --- !u!54 &4112930353279020545 stripped
@@ -10047,3 +10074,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4112930353279020551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112930353279020541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a55fd804511b54c9ecccf978fb1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1460481853}
+  playerCam: {fileID: 1535790129}
+  dashForce: 70
+  dashUpwardForce: 0
+  dashDuration: 0.2
+  dashCd: 5

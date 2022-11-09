@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 //Kyle Knotek
 
-public class LevelSelector : MonoBehaviour
+public class DojoSelector : MonoBehaviour
 {
-    public void OpenScene()
+    public void OpenDJScene()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("CutDojo");
     }
 }

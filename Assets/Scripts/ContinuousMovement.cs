@@ -21,6 +21,9 @@ public class ContinuousMovement : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
+
+    public float dashSpeed;
+
     public float groundDrag;
 
     [Header("Jumping\n")]
@@ -40,6 +43,7 @@ public class ContinuousMovement : MonoBehaviour
     public Transform FeetTransform;
     public LayerMask isGround;
     bool grounded;
+    public bool dashing;
 
     private Vector2 inputAxis;
     public Rigidbody rb;
@@ -52,6 +56,7 @@ public class ContinuousMovement : MonoBehaviour
     {
         walking,
         sprinting,
+        dashing,
         air
     }
 
@@ -72,7 +77,7 @@ public class ContinuousMovement : MonoBehaviour
         StateHandler();
 
         //ground drag
-        if(grounded)
+        if(state == MovementState.walking || state == MovementState.sprinting)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
@@ -111,8 +116,15 @@ public class ContinuousMovement : MonoBehaviour
 
     private void StateHandler()
     {
+        //Mode - Dashing
+        if(dashing)
+        {
+            state = MovementState.dashing;
+            moveSpeed = dashSpeed;
+        }
+
         //Mode - Sprinting
-        if(grounded && sprintButton.action.IsPressed())
+        else if(grounded && sprintButton.action.IsPressed())
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
