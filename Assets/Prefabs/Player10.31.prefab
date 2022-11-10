@@ -2814,6 +2814,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &330028567043341594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600411321016795253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225244c4146628c499c5ea81bc0ea234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 330028567498026326}
+  offset: {x: 0, y: 0, z: 0}
+  rotationX: 0
+  rotationY: 0
+  rotationZ: 0
 --- !u!114 &330028567043341595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2823,28 +2840,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 600411321016795253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1fda5eb487b624c95da3cc4971495e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1eac40514208a714db72ad9fa00d56cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 330028567266763016}
-  offset: {x: -0.1, y: -0.35, z: 0.2}
-  rotationX: -174
-  rotationY: 101
-  rotationZ: -59
---- !u!114 &330028567043341594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600411321016795253}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53741990ec8c87a4c9c6380903af8e50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 330028567443227464}
-  target2: {fileID: 0}
+  target: {fileID: 2894926318131717893, guid: a19b2cd24f0000945990361b46733797, type: 3}
 --- !u!1 &1252905742663904582 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7640558969779515294, guid: 8deab28403f52d9458b18cf04632df4f,

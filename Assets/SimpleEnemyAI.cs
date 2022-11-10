@@ -11,6 +11,12 @@ public class SimpleEnemyAI : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
     public float health;
 
+
+    // Enemy attributes
+    public bool IsStatic;       // used to stop the enemy AI in general
+    
+
+
     // Patroling behavior
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -25,37 +31,27 @@ public class SimpleEnemyAI : MonoBehaviour
 
     // States
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange = false;
+    public bool playerInSightRange, playerInAttackRange;
 
 
     private void Awake()
     {
-        player = GameObject.Find("Player10.23").transform;
+        player = GameObject.Find("Player10.31").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange);
-        playerInAttackRange = Physics.CheckSphere(transform.position, sightRange);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInAttackRange && !playerInSightRange) Patroling();
-        if (!playerInAttackRange && playerInSightRange) ChasingPlayer();
+        if (!playerInAttackRange && !playerInSightRange && !IsStatic) Patroling();
+        if (!playerInAttackRange && playerInSightRange && !IsStatic) ChasingPlayer();
         if (playerInAttackRange && playerInSightRange) AttackingPlayer();
     
     }
 
 
-    private void SearchWalkPoint() 
-    {
-        float randomZ = Random.RandomRange(-walkPointRange, walkPointRange);
-        float randomX = Random.RandomRange(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ );
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
-    }
 
     private void Patroling()
     {
@@ -69,7 +65,17 @@ public class SimpleEnemyAI : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
 
+    }
 
+    private void SearchWalkPoint()
+    {
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+            walkPointSet = true;
     }
 
 
@@ -105,7 +111,7 @@ public class SimpleEnemyAI : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void takeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
 
