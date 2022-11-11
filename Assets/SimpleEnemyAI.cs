@@ -8,15 +8,13 @@ public class SimpleEnemyAI : MonoBehaviour
 
     public NavMeshAgent agent;
     public Transform player;
+    public Transform Spawnpoint;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health;
-
 
     // Enemy attributes
     public bool IsStatic;       // used to stop the enemy AI in general
     
-
-
     // Patroling behavior
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -26,8 +24,6 @@ public class SimpleEnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
-    //public float Clip;
-    //private float Shot = 1; 
 
     // States
     public float sightRange, attackRange;
@@ -93,13 +89,11 @@ public class SimpleEnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+
+                Rigidbody rb = Instantiate(projectile, Spawnpoint.position, Quaternion.identity).GetComponent<Rigidbody>();
 
                 rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
                 rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
-                //Shot++;
-                //Debug.Log(Shot);
 
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
