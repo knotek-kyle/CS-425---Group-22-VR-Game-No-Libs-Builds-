@@ -8,12 +8,10 @@ using UnityEngine;
 
 public class FollowPoint : MonoBehaviour
 {
-    public Transform target;
-    public Transform target2;
+    public Transform swordPivot;
     // Update is called once per frame
     void Update()
     {
-        //transform.eulerAngles = new Vector3(target.eulerAngles.x + 270, target.eulerAngles.y, target.eulerAngles.z);
-        transform.rotation = target2.rotation;
+        transform.rotation = swordPivot.rotation;
     }
 }
