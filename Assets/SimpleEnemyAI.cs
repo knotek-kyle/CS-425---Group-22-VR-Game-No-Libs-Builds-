@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +6,7 @@ public class SimpleEnemyAI : MonoBehaviour
 
     public NavMeshAgent agent;
     public Transform player;
-    public Transform Spawnpoint;
+    public Transform Itemspawnpoint;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health;
 
@@ -24,6 +22,7 @@ public class SimpleEnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
+
 
     // States
     public float sightRange, attackRange;
@@ -41,7 +40,7 @@ public class SimpleEnemyAI : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInAttackRange && !playerInSightRange && !IsStatic) Patroling();
+        if (!playerInAttackRange && !playerInSightRange && !IsStatic) Patrolling();
         if (!playerInAttackRange && playerInSightRange && !IsStatic) ChasingPlayer();
         if (playerInAttackRange && playerInSightRange) AttackingPlayer();
     
@@ -49,7 +48,7 @@ public class SimpleEnemyAI : MonoBehaviour
 
 
 
-    private void Patroling()
+    private void Patrolling()
     {
         if (!walkPointSet) SearchWalkPoint();
 
@@ -90,7 +89,7 @@ public class SimpleEnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
 
-                Rigidbody rb = Instantiate(projectile, Spawnpoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+                Rigidbody rb = Instantiate(projectile, Itemspawnpoint.position, Quaternion.identity).GetComponent<Rigidbody>();
 
                 rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
                 rb.AddForce(transform.up * 8f, ForceMode.Impulse);
