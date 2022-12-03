@@ -12,19 +12,19 @@ public class AudioManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void PlaySliceSound(object sender, PlaneSlicer.UnitSliceEventInfo e)
+    private void PlaySliceSound(object sender, SwordSlicer.UnitSliceEventInfo e)
     {
         _audioSource.Play();
     }
 
     private void OnEnable()
     {
-    PlaneSlicer.OnSlice += PlaySliceSound;
+    SwordSlicer.OnSlice += PlaySliceSound;
     }
 
     private void OnDisable()
     {
-        PlaneSlicer.OnSlice -= PlaySliceSound;
+        SwordSlicer.OnSlice -= PlaySliceSound;
     }
 
     // Update is called once per frame

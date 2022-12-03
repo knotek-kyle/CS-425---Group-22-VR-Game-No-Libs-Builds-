@@ -15,7 +15,6 @@ public class FragmentManager : MonoBehaviour
     private void OnEnable()
     {
         Slice.OnFragmentCreation += OnSliceCreation;
-        
     }
 
     private void OnDisable()

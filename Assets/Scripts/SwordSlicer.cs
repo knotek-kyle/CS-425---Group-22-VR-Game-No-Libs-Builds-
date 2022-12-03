@@ -12,6 +12,19 @@ public class SwordSlicer : MonoBehaviour
     public InputActionProperty button;
     //public GameObject trigger;
     //Collider triggerCollider;
+
+    public static event System.EventHandler<UnitSliceEventInfo> OnSlice;
+
+    public class UnitSliceEventInfo : EventInfo
+    {
+        public GameObject UnitGO;
+        public UnitSliceEventInfo(string eventDescription, GameObject go)
+            {
+                UnitGO = go;
+                this.EventDescription = eventDescription;
+            }
+    }
+
     void Start()
     {
         InvokeRepeating("CutAction", 0.0f, 0.1f);
@@ -36,6 +49,10 @@ public class SwordSlicer : MonoBehaviour
         }
     }
 
+    void sliceTrigger(GameObject obj)
+    {   
+        OnSlice?.Invoke(this, new UnitSliceEventInfo("Slicing " + obj.name, obj));
+    }
 
     void CutAction()
     {
@@ -60,6 +77,7 @@ public class SwordSlicer : MonoBehaviour
 
                 if (sliceObj != null)
                 {
+                    sliceTrigger(obj);
                     sliceObj.GetComponent<MeshRenderer>()?.material.SetVector("CutPlaneOrigin", Vector3.positiveInfinity);
                     sliceObj.ComputeSlice(this.transform.up, this.transform.position);
                 }

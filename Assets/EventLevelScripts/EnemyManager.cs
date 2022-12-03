@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
 
 
 
-    private void OnUnitSliced(object sender, PlaneSlicer.UnitSliceEventInfo e) 
+    private void OnUnitSliced(object sender, SwordSlicer.UnitSliceEventInfo e) 
     {
         Debug.Log("Alerted about slice: " + e.UnitGO);
         Debug.Log(e.UnitGO.name + " being removed from enemy list");
@@ -53,13 +53,13 @@ public class EnemyManager : MonoBehaviour
     private void OnEnable()
     {
         WinArea.OnWin += RemoveAllEnemies;
-        PlaneSlicer.OnSlice += OnUnitSliced;
+        SwordSlicer.OnSlice += OnUnitSliced;
     }
 
     private void OnDisable()
     {
         WinArea.OnWin -= RemoveAllEnemies;
-        PlaneSlicer.OnSlice += OnUnitSliced;
+        SwordSlicer.OnSlice += OnUnitSliced;
     }
 
     void Update()

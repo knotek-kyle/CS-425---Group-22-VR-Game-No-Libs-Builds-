@@ -9,7 +9,6 @@ public abstract class EventInfo
     public string EventDescription;
 }
 
-
 public class FragmentCreationEventInfo : EventInfo
 {
     public GameObject UnitGO;
