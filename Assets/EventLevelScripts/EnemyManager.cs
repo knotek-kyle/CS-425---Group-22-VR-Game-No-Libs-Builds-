@@ -13,7 +13,6 @@ public class EnemyManager : MonoBehaviour
     private List<GameObject> enemyList;
     // Start is called before the first frame update
 
-
     void Start()
     {
         //contains list of all current enemies.  dead enemies are removed from list.
@@ -27,7 +26,6 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("Alerted about slice: " + e.UnitGO);
         Debug.Log(e.UnitGO.name + " being removed from enemy list");
         enemyList.Remove(e.UnitGO);
-        e.UnitGO.GetComponent<EnemyLogic>().Die();   
     }
 
 

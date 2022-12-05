@@ -1,14 +1,13 @@
 {
   "dependencies": {
     "com.dgreenheck.openfracture": {
-      "version": "https://github.com/dgreenheck/OpenFracture.git",
+      "version": "file:OpenFracture",
       "depth": 0,
-      "source": "git",
+      "source": "embedded",
       "dependencies": {
         "com.unity.test-framework": "1.1.30",
         "com.unity.testtools.codecoverage": "1.0.1"
-      },
-      "hash": "12bb18a6b1dfbe027447d47cdf468888d88e97ed"
+      }
     },
     "com.unity.2d.animation": {
       "version": "7.0.7",
