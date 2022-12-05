@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 //Kyle Knotek
 
@@ -10,6 +11,7 @@ public class Dash : MonoBehaviour
     [Header("Referneces")]
     public Transform orientation;
     public Transform playerCam;
+    public Image abilityBar;
     private Rigidbody rb;
     private ContinuousMovement pm;
     public UnityEvent onOutOfBoundsTrigger;
@@ -31,12 +33,15 @@ public class Dash : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<ContinuousMovement>();
+        abilityBar.fillAmount = 0;
     }
 
     private void Update()
     {
         if (dashCdTimer > 0)
             dashCdTimer -= Time.deltaTime;
+        if(pm.dashing == false)
+            abilityBar.fillAmount += 1/dashCd * Time.deltaTime;
     }
 
     public void DoDash()
@@ -51,6 +56,7 @@ public class Dash : MonoBehaviour
         delayedForceToApply = forceToApply;
         Invoke(nameof(DelayedDashForce), 0.02f);
         onDash.Invoke();
+        abilityBar.fillAmount = 0;
 
         Invoke(nameof(ResetDash), dashDuration);
     }
