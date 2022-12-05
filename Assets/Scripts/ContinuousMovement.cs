@@ -71,7 +71,7 @@ public class ContinuousMovement : MonoBehaviour
         //Rotate player orientation according to camera
         orientation.eulerAngles = new Vector3(0, targetCamera.eulerAngles.y, 0);
         //Ground check
-        grounded = Physics.CheckSphere(FeetTransform.position, 0.4f, isGround);
+        grounded = Physics.CheckSphere(FeetTransform.position, 0.3f, isGround);
 
         SpeedControl();
         StateHandler();

@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
+
+//Guillermo Hernandez
 
 public class SimpleEnemyAI : MonoBehaviour
 {
@@ -27,6 +30,8 @@ public class SimpleEnemyAI : MonoBehaviour
     // States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public UnityEvent onDamage;
+    public UnityEvent onDeath;
 
 
     private void Awake()
@@ -103,15 +108,29 @@ public class SimpleEnemyAI : MonoBehaviour
         alreadyAttacked = false;
     }
 
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.name == "Katana")
+        {
+            TakeDamage(1);
+        }
+        else if (col.gameObject.name == "OverCharge Shield")
+        {
+            TakeDamage(3);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         health -= damage;
+        onDamage.Invoke();
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.1f);
     }
 
     private void DestroyEnemy() 
     {
+        onDeath.Invoke();
         Destroy(gameObject);
     }
 

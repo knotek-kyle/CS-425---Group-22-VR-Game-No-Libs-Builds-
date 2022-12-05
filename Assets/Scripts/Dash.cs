@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+//Kyle Knotek
 
 public class Dash : MonoBehaviour
 {
@@ -9,6 +12,7 @@ public class Dash : MonoBehaviour
     public Transform playerCam;
     private Rigidbody rb;
     private ContinuousMovement pm;
+    public UnityEvent onOutOfBoundsTrigger;
 
     [Header("Dashing")]
     public float dashForce;
@@ -18,6 +22,10 @@ public class Dash : MonoBehaviour
     [Header("Cooldown")]
     public float dashCd;
     private float dashCdTimer;
+
+    [Header("Particle Events")]
+    public UnityEvent onDash;
+    public UnityEvent onDashStop;
 
     private void Start()
     {
@@ -42,6 +50,7 @@ public class Dash : MonoBehaviour
 
         delayedForceToApply = forceToApply;
         Invoke(nameof(DelayedDashForce), 0.02f);
+        onDash.Invoke();
 
         Invoke(nameof(ResetDash), dashDuration);
     }
@@ -56,6 +65,8 @@ public class Dash : MonoBehaviour
     private void ResetDash()
     {
         pm.dashing = false;
+        onDashStop.Invoke();
+
         rb.velocity = new Vector3(0, 0, 0);
     }
 }
