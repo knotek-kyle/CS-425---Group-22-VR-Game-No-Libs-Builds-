@@ -11,23 +11,7 @@ public class Slice : MonoBehaviour
     public static event System.EventHandler<FragmentCreationEventInfo> OnFragmentCreation;
 
 
-    public class SliceEventInfo
-    {
-        public GameObject UnitGO;
-        public SliceEventInfo(GameObject obj)
-        {
-            UnitGO = obj;
-        }
-    }
 
-    public class FragmentCreationEventInfo
-    {
-        public GameObject UnitGO;
-        public FragmentCreationEventInfo(GameObject obj)
-        {
-            UnitGO = obj;
-        }
-    }
 
     /// <summary>
     /// The number of times this fragment has been re-sliced.
@@ -79,7 +63,7 @@ public class Slice : MonoBehaviour
             GameObject.Destroy(sliceTemplate);
 
             //Deactivate the original object
-            //this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
 
             // Fire the completion callback
             if (callbackOptions.onCompleted != null)
