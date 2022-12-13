@@ -6,11 +6,7 @@ using TMPro;
 public class ScoreManager : MonoBehaviour , IDataPersistence
 {
     private int score = 0;
-    private TextMeshProUGUI Score;
-
-    private void Awake(){
-        Score = this.GetComponent<TextMeshProUGUI>();
-    }
+    [SerializeField]public TextMeshProUGUI Score;
 
     public void LoadData(PlayerData data){
         this.score = data.score;
@@ -20,8 +16,8 @@ public class ScoreManager : MonoBehaviour , IDataPersistence
         data.score = this.score;
     }
 
-    private void Update(){
-         if (Input.GetButtonDown("Fire1")){
+    public void Update(){
+        if (Input.GetButtonDown("Fire1")){
             score ++;
         }
         Score.text = "" + score;

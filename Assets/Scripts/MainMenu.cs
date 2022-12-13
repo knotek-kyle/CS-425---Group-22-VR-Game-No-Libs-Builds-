@@ -10,17 +10,17 @@ public class MainMenu : MonoBehaviour
     [Header("Menu Buttons")]
     [SerializeField] private Button NewGame;
     [SerializeField] private Button PreviousGame;
-
+    
 
     public void OnNewGameClicked(){
         Debug.Log("New");
-        
-        SceneManager.LoadSceneAsync("SampleScene");
+        DataPersistenceManager.instance.NewGame();
+        SceneManager.LoadSceneAsync("New Scene");
    }
 
     public void OnPreviousGameClicked(){
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("SampleScene");
+        SceneManager.LoadSceneAsync("New Scene");
         
 
     }

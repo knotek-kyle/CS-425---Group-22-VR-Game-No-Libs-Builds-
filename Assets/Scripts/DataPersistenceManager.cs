@@ -22,11 +22,12 @@ public class DataPersistenceManager : MonoBehaviour
 
     private FileDataHandler dataHandler;
     
-    public static DataPersistenceManager instance;
-  
+    public static DataPersistenceManager instance { get; private set; }
+     
 
     public void Awake() 
     {
+        
         if (instance != null) 
         {
             Debug.Log("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
@@ -40,17 +41,17 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void OnEnable(){
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
+        
     }
 
     private void OnDisable(){
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode){
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
-        
+        NewGame();
         
     }
 
@@ -59,6 +60,7 @@ public class DataPersistenceManager : MonoBehaviour
     }
 
     public void NewGame(){
+        
         this.data = new PlayerData();
     }
 
