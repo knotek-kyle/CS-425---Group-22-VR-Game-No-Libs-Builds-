@@ -1,5 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
+<<<<<<< Updated upstream:Assets/SimpleEnemyAI.cs
+=======
+using UnityEngine.Events;
+
+//Guillermo Hernandez Flores
+>>>>>>> Stashed changes:Assets/Scripts/SimpleEnemyAI.cs
 
 public class SimpleEnemyAI : MonoBehaviour
 {
@@ -9,6 +15,7 @@ public class SimpleEnemyAI : MonoBehaviour
     public Transform Itemspawnpoint;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health;
+    public Vector3 playerposition;
 
     // Enemy attributes
     public bool IsStatic;       // used to stop the enemy AI in general
@@ -69,7 +76,8 @@ public class SimpleEnemyAI : MonoBehaviour
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
+        
+        // Checking if the new position to move is on the walking plain
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
     }
@@ -85,12 +93,17 @@ public class SimpleEnemyAI : MonoBehaviour
     {
         agent.SetDestination(transform.position);
 
+<<<<<<< Updated upstream:Assets/SimpleEnemyAI.cs
         playerposition = new Vector3(player.position.x, 1f, playerposition.z);
+=======
+        // Fixing tilt on enemy AI (locking y-axis)
+        playerposition = new Vector3(player.position.x, 1f, player.position.z);
+>>>>>>> Stashed changes:Assets/Scripts/SimpleEnemyAI.cs
         transform.LookAt(playerposition);
 
         if (!alreadyAttacked)
         {
-
+                // Bullet is created and shot
                 Rigidbody rb = Instantiate(projectile, Itemspawnpoint.position, Quaternion.identity).GetComponent<Rigidbody>();
 
                 rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
@@ -106,7 +119,26 @@ public class SimpleEnemyAI : MonoBehaviour
         alreadyAttacked = false;
     }
 
+<<<<<<< Updated upstream:Assets/SimpleEnemyAI.cs
     public void TakeDamage(int damage)
+=======
+    // Kyle Knotek
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.name == "Katana")
+        {
+            TakeDamage(1);
+        }
+        else if (col.gameObject.name == "OverCharge Shield")
+        {
+            TakeDamage(3);
+        }
+    }
+
+    
+    // Guillermo Hernandez Flores
+    public void TakeDamage(int damage)  // simple destroying action/AI take actions
+>>>>>>> Stashed changes:Assets/Scripts/SimpleEnemyAI.cs
     {
         health -= damage;
 
