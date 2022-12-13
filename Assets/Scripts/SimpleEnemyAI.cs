@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-//Guillermo Hernandez
+//Guillermo Hernandez Flores
 
 public class SimpleEnemyAI : MonoBehaviour
 {
@@ -15,7 +15,8 @@ public class SimpleEnemyAI : MonoBehaviour
 
     // Enemy attributes
     public bool IsStatic;       // used to stop the enemy AI in general
-    
+    public Vector3 playerposition;
+
     // Patroling behavior
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -88,10 +89,13 @@ public class SimpleEnemyAI : MonoBehaviour
     {
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        // Fixing tilt on enemy AI
+        playerposition = new Vector3(player.position.x, 1f, playerposition.z);
+        transform.LookAt(playerposition);
 
         if (!alreadyAttacked)
         {
+                // Creates and shoots Projectile
 
                 Rigidbody rb = Instantiate(projectile, Itemspawnpoint.position, Quaternion.identity).GetComponent<Rigidbody>();
 
@@ -120,6 +124,7 @@ public class SimpleEnemyAI : MonoBehaviour
         }
     }
 
+    // Guillermo Hernandez Flores
     public void TakeDamage(int damage)
     {
         health -= damage;
