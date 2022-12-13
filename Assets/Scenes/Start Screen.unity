@@ -650,11 +650,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 532672635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c82a3ac0c5054054ab1180818ce36059, type: 3}
+  m_Script: {fileID: 11500000, guid: b1f342d1fcbb46e48852acec836c4e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NewGame: {fileID: 532672637}
   PreviousGame: {fileID: 1172419266}
+--- !u!1 &579228099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 579228101}
+  - component: {fileID: 579228100}
+  m_Layer: 0
+  m_Name: MainMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &579228100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579228099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f342d1fcbb46e48852acec836c4e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NewGame: {fileID: 532672637}
+  PreviousGame: {fileID: 1172419266}
+--- !u!4 &579228101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579228099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.07770634, y: 672.60223, z: 982.53015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &749907507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1172419264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c82a3ac0c5054054ab1180818ce36059, type: 3}
+  m_Script: {fileID: 11500000, guid: b1f342d1fcbb46e48852acec836c4e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NewGame: {fileID: 532672637}
