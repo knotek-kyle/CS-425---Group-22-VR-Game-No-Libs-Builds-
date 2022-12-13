@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CutDojo.unity
     guid: f080cd9011224a04bad8d1716d5f0685
+  - enabled: 1
+    path: Assets/Scenes/CityTest.unity
+    guid: 9d2fc0438d38bf74088e5d021a19daae
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: f936a7ad14e61b8408c257e18bcff0a9,
       type: 2}
