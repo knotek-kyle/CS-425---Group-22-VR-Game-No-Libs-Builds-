@@ -936,8 +936,17 @@ LineRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1458,8 +1467,17 @@ LineRenderer:
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2528,6 +2546,7 @@ MonoBehaviour:
     m_Bits: 1024
   xrOrigin: {fileID: 5138194922236489501}
   audioData: {fileID: 5138194922167173362}
+  collider: {fileID: 0}
   body: {fileID: 5138194922236489476}
 --- !u!136 &5138194922236489483
 CapsuleCollider:
@@ -3114,6 +3133,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5138194920476327760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444817724670214719}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53741990ec8c87a4c9c6380903af8e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordPivot: {fileID: 0}
 --- !u!114 &5138194920476327761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3131,20 +3163,7 @@ MonoBehaviour:
   rotationX: -174
   rotationY: 101
   rotationZ: -59
---- !u!114 &5138194920476327760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5444817724670214719}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53741990ec8c87a4c9c6380903af8e50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 5138194922222059778}
-  target2: {fileID: 0}
+  delayEuler: 10
 --- !u!1 &5961007889507888908 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7640558969779515294, guid: 8deab28403f52d9458b18cf04632df4f,
