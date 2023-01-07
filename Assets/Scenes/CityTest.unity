@@ -4393,6 +4393,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6021811174138960587, guid: a13091ec3c054084db6417e0cde44203,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1582343270}
+    - target: {fileID: 6021811174138960587, guid: a13091ec3c054084db6417e0cde44203,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021811174138960587, guid: a13091ec3c054084db6417e0cde44203,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OpenLevel, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6021811174607285725, guid: a13091ec3c054084db6417e0cde44203,
         type: 3}
       propertyPath: m_Camera
@@ -4403,8 +4418,28 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1202366408254389745, guid: a13091ec3c054084db6417e0cde44203, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a13091ec3c054084db6417e0cde44203, type: 3}
+--- !u!1 &1582343269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6021811174138960628, guid: a13091ec3c054084db6417e0cde44203,
+    type: 3}
+  m_PrefabInstance: {fileID: 1582343268}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1582343270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582343269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30933a6cb9017444b308cb5bb16a40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: CityTest
 --- !u!1 &1606976068
 GameObject:
   m_ObjectHideFlags: 0
@@ -51985,7 +52020,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8223901093856399486}
   m_LocalRotation: {x: 0, y: -0.70710677, z: 0.70710677, w: 0}
-  m_LocalPosition: {x: -0.2198, y: 0.4165, z: -0.0245}
+  m_LocalPosition: {x: -0.2198, y: 0.45, z: -0.009}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children:
