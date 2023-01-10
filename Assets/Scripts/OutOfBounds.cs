@@ -14,8 +14,6 @@ public class OutOfBounds : MonoBehaviour
         playerTarget = GameObject.Find("XR Origin");
     }
 
-    #region Event Subscriptions
-
     public void OnEnable()
     {
         LevelBoundaries.OnOutOfBounds += winCondition;
@@ -26,9 +24,7 @@ public class OutOfBounds : MonoBehaviour
         LevelBoundaries.OnOutOfBounds -= winCondition;
     }
 
-    #endregion
-
-    private void winCondition(object sender, OutOfBoundsEventInfo e)
+    private void winCondition(object sender, LevelBoundaries.OutOfBoundsEventInfo e)
     {
         Debug.Log(e.EventDescription);
         playerTarget.transform.position = OutOfBoundsSpawn;

@@ -7,6 +7,7 @@ using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 //Kyle Knotek
+//Script for continuous movement with the joystick
 
 public class ContinuousMovement : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class ContinuousMovement : MonoBehaviour
     public float sprintSpeed;
 
     public float dashSpeed;
+    public float grappleSpeed;
 
     public float groundDrag;
 
@@ -44,6 +46,7 @@ public class ContinuousMovement : MonoBehaviour
     public LayerMask isGround;
     bool grounded;
     public bool dashing;
+    public bool grappling;
 
     private Vector2 inputAxis;
     public Rigidbody rb;
@@ -57,6 +60,7 @@ public class ContinuousMovement : MonoBehaviour
         walking,
         sprinting,
         dashing,
+        grappling,
         air
     }
 
@@ -66,37 +70,6 @@ public class ContinuousMovement : MonoBehaviour
         collider = GetComponent<CapsuleCollider>();
     }
 
-    void Update()
-    {
-        //Rotate player orientation according to camera
-        orientation.eulerAngles = new Vector3(0, targetCamera.eulerAngles.y, 0);
-        //Ground check
-        grounded = Physics.CheckSphere(FeetTransform.position, 0.3f, isGround);
-
-        SpeedControl();
-        StateHandler();
-
-        //ground drag
-        if(state == MovementState.walking || state == MovementState.sprinting)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
-
-        //Change Collider Height
-        var center = xrOrigin.CameraInOriginSpacePos;
-        //collider.center = new Vector3(center.x, GetComponent<Collider>().center.y, center.z);
-        collider.height = xrOrigin.CameraInOriginSpaceHeight;
-
-        //get jump press
-        if(jumpButton.action.WasPressedThisFrame() && readyToJump && grounded)
-        {
-            readyToJump = false;
-
-            Jump();
-
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-    }
 
     void FixedUpdate()
     {
@@ -110,7 +83,34 @@ public class ContinuousMovement : MonoBehaviour
 
         //Call movement function
         MovePlayer(moveDirection);
+        //Rotate player orientation according to camera
+        orientation.eulerAngles = new Vector3(0, targetCamera.eulerAngles.y, 0);
+        //Ground check
+        grounded = Physics.Raycast(FeetTransform.position, Vector3.down, 1.05f);
 
+        SpeedControl();
+        StateHandler();
+
+        //ground drag
+        if(state == MovementState.walking || state == MovementState.sprinting)
+            rb.drag = groundDrag;
+        else
+            rb.drag = 0;
+
+        //Change Collider Height
+        var center = xrOrigin.CameraInOriginSpacePos;
+        collider.center = new Vector3(center.x, collider.center.y, center.z);
+        collider.height = xrOrigin.CameraInOriginSpaceHeight;
+
+        //get jump press
+        if(jumpButton.action.IsPressed() && readyToJump && grounded)
+        {
+            readyToJump = false;
+
+            Jump();
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
 
     }
 
@@ -121,6 +121,17 @@ public class ContinuousMovement : MonoBehaviour
         {
             state = MovementState.dashing;
             moveSpeed = dashSpeed;
+        }
+
+        //Mode - Grappling
+        if(grappling)
+        {
+            state = MovementState.grappling;
+            moveSpeed = grappleSpeed;
+            if(grounded = true)
+            {
+                Invoke(nameof(ResetGrapple), 0.8f);
+            }
         }
 
         //Mode - Sprinting
@@ -141,14 +152,17 @@ public class ContinuousMovement : MonoBehaviour
         else
         {
             state = MovementState.air;
+            collider.height = 1;
         }
     }
 
     private void MovePlayer(Vector3 moveDirection)
     {
         //ground movement
-        if(grounded)
+        if(grounded && !dashing && !grappling)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Impulse);
+        }
         //air movement
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * airMultiplier, ForceMode.Impulse);
@@ -180,5 +194,10 @@ public class ContinuousMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+    private void ResetGrapple()
+    {
+        grounded = false;
+        grappling = false;
     }
 }

@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    int enemyTotal;
+    /*int enemyTotal;
     public GameObject enemy;
     private List<GameObject> enemyList;
     // Start is called before the first frame update
@@ -70,5 +70,5 @@ public class EnemyManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Q)) {
             Spawn();
         }
-    }
+    }*/
 }

@@ -32,9 +32,13 @@ public class EnemyLife : MonoBehaviour , IDataPersistence
     }
 
     private void OnCollisionEnter(Collision collision){
-        if(collision.gameObject.name == "Sphere(Clone)"){
+        if(collision.gameObject.name == "Bullet"){
             Destroy(e);
             Destroy(collision.gameObject);
+            killed = true;
+        }
+        if(collision.gameObject.name == "Katana"){
+            Destroy(e);
             killed = true;
         }
     }
