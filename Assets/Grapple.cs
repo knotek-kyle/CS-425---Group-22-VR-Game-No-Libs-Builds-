@@ -24,5 +24,6 @@ public class Grapple : MonoBehaviour
         pm.grappling = true;
         rb.AddForce(grappleDir.forward * force, ForceMode.Impulse);
         jumpSound.Play(0);
+        rb.drag = 15;
     }
 }

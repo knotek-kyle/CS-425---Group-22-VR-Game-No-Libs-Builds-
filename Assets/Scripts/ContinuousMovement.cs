@@ -42,9 +42,11 @@ public class ContinuousMovement : MonoBehaviour
 
 
     [Header("Ground Check\n")]
+    public Transform RayTransform;
     public Transform FeetTransform;
     public LayerMask isGround;
-    bool grounded;
+    bool groundedRay;
+    bool groundedSphere;
     public bool dashing;
     public bool grappling;
 
@@ -71,7 +73,7 @@ public class ContinuousMovement : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
         //Get axis values from joystick
         UnityEngine.XR.InputDevice device = UnityEngine.XR.InputDevices.GetDeviceAtXRNode(inputSource);
@@ -86,7 +88,8 @@ public class ContinuousMovement : MonoBehaviour
         //Rotate player orientation according to camera
         orientation.eulerAngles = new Vector3(0, targetCamera.eulerAngles.y, 0);
         //Ground check
-        grounded = Physics.Raycast(FeetTransform.position, Vector3.down, 1.05f);
+        groundedRay = Physics.Raycast(RayTransform.position, Vector3.down, 1.05f);
+        groundedSphere = Physics.CheckSphere(FeetTransform.position, 0.3f, isGround);
 
         SpeedControl();
         StateHandler();
@@ -103,7 +106,7 @@ public class ContinuousMovement : MonoBehaviour
         collider.height = xrOrigin.CameraInOriginSpaceHeight;
 
         //get jump press
-        if(jumpButton.action.IsPressed() && readyToJump && grounded)
+        if(jumpButton.action.IsPressed() && readyToJump && groundedRay && groundedSphere)
         {
             readyToJump = false;
 
@@ -121,6 +124,9 @@ public class ContinuousMovement : MonoBehaviour
         {
             state = MovementState.dashing;
             moveSpeed = dashSpeed;
+            groundedRay = false;
+            groundedSphere = false;
+            collider.height = 1;
         }
 
         //Mode - Grappling
@@ -128,21 +134,22 @@ public class ContinuousMovement : MonoBehaviour
         {
             state = MovementState.grappling;
             moveSpeed = grappleSpeed;
-            if(grounded = true)
+            if(groundedRay && groundedSphere)
             {
                 Invoke(nameof(ResetGrapple), 0.8f);
             }
+            collider.height = 1;
         }
 
         //Mode - Sprinting
-        else if(grounded && sprintButton.action.IsPressed())
+        else if(groundedRay && groundedSphere && sprintButton.action.IsPressed())
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
         }
 
         //Mode - Walking
-        else if (grounded)
+        else if (groundedRay && groundedSphere)
         {
             state = MovementState.walking;
             moveSpeed = walkSpeed;
@@ -159,12 +166,12 @@ public class ContinuousMovement : MonoBehaviour
     private void MovePlayer(Vector3 moveDirection)
     {
         //ground movement
-        if(grounded && !dashing && !grappling)
+        if(groundedRay && groundedSphere && !dashing && !grappling)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Impulse);
         }
         //air movement
-        else if(!grounded)
+        else if(!groundedRay && !groundedSphere)
             rb.AddForce(moveDirection.normalized * moveSpeed * airMultiplier, ForceMode.Impulse);
 
         //Keyboard control
@@ -197,7 +204,8 @@ public class ContinuousMovement : MonoBehaviour
     }
     private void ResetGrapple()
     {
-        grounded = false;
+        groundedRay = false;
+        groundedSphere = false;
         grappling = false;
     }
 }

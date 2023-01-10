@@ -49,12 +49,13 @@ public class Dash : MonoBehaviour
         if(dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
 
+        rb.velocity = new Vector3(0, 0, 0);
         pm.dashing = true;
 
         Vector3 forceToApply = playerCam.forward * dashForce + orientation.up * dashUpwardForce;
 
         delayedForceToApply = forceToApply;
-        Invoke(nameof(DelayedDashForce), 0.02f);
+        Invoke(nameof(DelayedDashForce), 0.1f);
         onDash.Invoke();
         abilityBar.fillAmount = 0;
 
