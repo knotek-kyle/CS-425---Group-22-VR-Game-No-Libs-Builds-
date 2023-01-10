@@ -24,6 +24,7 @@ public class ContinuousMovement : MonoBehaviour
     public float sprintSpeed;
 
     public float dashSpeed;
+    public float grappleSpeed;
 
     public float groundDrag;
 
@@ -45,6 +46,7 @@ public class ContinuousMovement : MonoBehaviour
     public LayerMask isGround;
     bool grounded;
     public bool dashing;
+    public bool grappling;
 
     private Vector2 inputAxis;
     public Rigidbody rb;
@@ -58,6 +60,7 @@ public class ContinuousMovement : MonoBehaviour
         walking,
         sprinting,
         dashing,
+        grappling,
         air
     }
 
@@ -120,6 +123,17 @@ public class ContinuousMovement : MonoBehaviour
             moveSpeed = dashSpeed;
         }
 
+        //Mode - Grappling
+        if(grappling)
+        {
+            state = MovementState.grappling;
+            moveSpeed = grappleSpeed;
+            if(grounded = true)
+            {
+                Invoke(nameof(ResetGrapple), 0.8f);
+            }
+        }
+
         //Mode - Sprinting
         else if(grounded && sprintButton.action.IsPressed())
         {
@@ -145,8 +159,10 @@ public class ContinuousMovement : MonoBehaviour
     private void MovePlayer(Vector3 moveDirection)
     {
         //ground movement
-        if(grounded && !dashing)
+        if(grounded && !dashing && !grappling)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Impulse);
+        }
         //air movement
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * airMultiplier, ForceMode.Impulse);
@@ -178,5 +194,10 @@ public class ContinuousMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+    private void ResetGrapple()
+    {
+        grounded = false;
+        grappling = false;
     }
 }

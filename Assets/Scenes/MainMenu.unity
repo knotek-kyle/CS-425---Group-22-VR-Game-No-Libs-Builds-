@@ -11824,7 +11824,7 @@ PrefabInstance:
     - target: {fileID: 5138194920250991425, guid: 78e803a7a1d26fc45bc5c87ec39c8edb,
         type: 3}
       propertyPath: m_Antialiasing
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5138194920250991425, guid: 78e803a7a1d26fc45bc5c87ec39c8edb,
         type: 3}
