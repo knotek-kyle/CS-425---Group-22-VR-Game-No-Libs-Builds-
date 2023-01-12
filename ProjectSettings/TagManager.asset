@@ -6,10 +6,6 @@ TagManager:
   tags:
   - Right Hand
   - Left Hand
-  - Projectile
-  - Floor
-  - Enemy
-  - Slice
   layers:
   - Default
   - TransparentFX
@@ -22,8 +18,8 @@ TagManager:
   - Sword
   - Sheath
   - JumpableFloor
-  - 
-  - 
+  - Climbable
+  - Grapple
   - 
   - 
   - 

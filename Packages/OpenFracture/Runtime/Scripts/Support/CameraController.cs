@@ -64,6 +64,14 @@ public class CameraController : MonoBehaviour
         {
             rigidbody.AddRelativeForce(Vector3.right * acceleration, ForceMode.Acceleration);
         }
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            rigidbody.AddRelativeForce(Vector3.down * acceleration, ForceMode.Acceleration);
+        }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            rigidbody.AddRelativeForce(Vector3.up * acceleration, ForceMode.Acceleration);
+        }
         
         // Clamp the player's velocity in the X and Z directions
         Vector2 xzVelocity = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);

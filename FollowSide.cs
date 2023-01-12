@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Kyle Knotek
+
 public class FollowSide : MonoBehaviour
 {
     public Transform target;

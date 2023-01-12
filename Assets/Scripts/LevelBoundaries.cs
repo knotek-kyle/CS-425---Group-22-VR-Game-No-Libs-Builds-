@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-///Daniel Lontz
-///<summary>
-///creates an OutOfBounds event when "Player" collider enters this object's collider
-///</summary> 
+//Daniel Lontz
 
 public class LevelBoundaries : MonoBehaviour
 {
     private GameObject playerTarget;
     private GameObject sword;
     public GameObject sheath;
-    //probably shouldn't be using both UnityEvent with C# events, we should choose
-    //one and stick with it
     public static event System.EventHandler<OutOfBoundsEventInfo> OnOutOfBounds;
     public UnityEvent onOutOfBoundsTrigger;
+
+    public class OutOfBoundsEventInfo : EventInfo
+    {   
+        public OutOfBoundsEventInfo(string eventDescription)
+            {
+                this.EventDescription = eventDescription;
+            }
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -6,7 +6,7 @@ using UnityEngine;
 //Deprecated/Needs update
 public class AudioManager : MonoBehaviour
 {
-    private AudioSource _audioSource;
+    /*private AudioSource _audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +32,5 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         
-    }
+    }*/
 }

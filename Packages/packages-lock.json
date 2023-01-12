@@ -1,13 +1,21 @@
 {
   "dependencies": {
+    "com.autodesk.fbx": {
+      "version": "4.1.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.dgreenheck.openfracture": {
-      "version": "file:OpenFracture",
+      "version": "https://github.com/dgreenheck/OpenFracture.git",
       "depth": 0,
-      "source": "embedded",
+      "source": "git",
       "dependencies": {
         "com.unity.test-framework": "1.1.30",
         "com.unity.testtools.codecoverage": "1.0.1"
-      }
+      },
+      "hash": "12bb18a6b1dfbe027447d47cdf468888d88e97ed"
     },
     "com.unity.2d.animation": {
       "version": "7.0.7",
@@ -94,6 +102,16 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.animation.rigging": {
+      "version": "1.1.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.4.1",
+        "com.unity.test-framework": "1.1.24"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.burst": {
       "version": "1.7.3",
       "depth": 1,
@@ -101,6 +119,13 @@
       "dependencies": {
         "com.unity.mathematics": "1.2.1"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.cinemachine": {
+      "version": "2.8.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
@@ -133,6 +158,27 @@
         "com.unity.2d.tilemap.extras": "2.2.3"
       }
     },
+    "com.unity.feature.characters-animation": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.animation.rigging": "1.1.1",
+        "com.unity.timeline": "1.6.4",
+        "com.unity.cinemachine": "2.8.6",
+        "com.unity.formats.fbx": "4.1.2"
+      }
+    },
+    "com.unity.formats.fbx": {
+      "version": "4.1.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.5.2",
+        "com.autodesk.fbx": "4.1.1"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ide.rider": {
       "version": "3.0.15",
       "depth": 0,
@@ -159,7 +205,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.4.1",
+      "version": "1.4.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -385,13 +431,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.openxr": {
-      "version": "1.4.2",
+      "version": "1.5.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.xr.management": "4.0.1",
         "com.unity.xr.legacyinputhelpers": "2.1.2",
-        "com.unity.inputsystem": "1.3.0"
+        "com.unity.inputsystem": "1.4.2"
       },
       "url": "https://packages.unity.com"
     },
